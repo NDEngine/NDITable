@@ -2,7 +2,7 @@
   "name": "com.ndengine.nditable",
   "displayName": "NDEngine XFrame NDITable SDK",
   "description": "NDITable Unity Develop Framework",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "unity": "2018.4",
   "repository": {
     "type": "git",
