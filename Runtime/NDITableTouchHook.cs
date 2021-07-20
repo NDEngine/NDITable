@@ -5,6 +5,17 @@ using xFrame.Unity;
 
 public class NDITableTouchHook : XComponent {
 #if UNITY_STANDALONE_WIN
+    [StructLayout(LayoutKind.Sequential)]
+    public struct POINT {
+        public int X;
+        public int Y;
+
+        public POINT(int x, int y) {
+            X = x;
+            Y = y;
+        }
+    }
+
     [DllImport("user32.dll")]
     private static extern uint GetActiveWindow();
 
@@ -13,6 +24,9 @@ public class NDITableTouchHook : XComponent {
 
     [DllImport("user32.dll")]
     private static extern IntPtr SetWindowLongPtr(IntPtr handle, int index, long ptr);
+
+    [DllImport("user32.dll")]
+    static extern bool ScreenToClient(IntPtr hWnd, ref POINT lpPoint);
 
     private delegate IntPtr WndProc(IntPtr handle, int message, IntPtr wparam, IntPtr lparam);
 
@@ -28,7 +42,7 @@ public class NDITableTouchHook : XComponent {
 
     private WndProc hook;
 
-    void Start() {
+    void FixedUpdate() {
         if (wndHandle == IntPtr.Zero) {
             wndHandle = (IntPtr)GetActiveWindow();
 
@@ -51,10 +65,14 @@ public class NDITableTouchHook : XComponent {
     private IntPtr TouchProc(IntPtr hwnd, int msg, IntPtr wparam, IntPtr lparam) {
         switch (msg) {
             case WM_POINTERDOWN: {
+                    var pt = new POINT(LowWord(lparam), HighWord(lparam));
+
+                    ScreenToClient(hwnd, ref pt);
+
                     var touch = new NDITouch {
                         Id = LowWord(wparam),
-                        x = LowWord(lparam),
-                        y = HighWord(lparam)
+                        x = pt.X,
+                        y = pt.Y
                     };
 
                     NDITouchInput.Instance.Add(touch);
@@ -62,10 +80,14 @@ public class NDITableTouchHook : XComponent {
                 break;
 
             case WM_POINTERUPDATE: {
+                    var pt = new POINT(LowWord(lparam), HighWord(lparam));
+
+                    ScreenToClient(hwnd, ref pt);
+
                     var touch = new NDITouch {
                         Id = LowWord(wparam),
-                        x = LowWord(lparam),
-                        y = HighWord(lparam)
+                        x = pt.X,
+                        y = pt.Y
                     };
 
                     NDITouchInput.Instance.Update(touch);
@@ -73,10 +95,14 @@ public class NDITableTouchHook : XComponent {
                 break;
 
             case WM_POINTERUP: {
+                    var pt = new POINT(LowWord(lparam), HighWord(lparam));
+
+                    ScreenToClient(hwnd, ref pt);
+
                     var touch = new NDITouch {
                         Id = LowWord(wparam),
-                        x = LowWord(lparam),
-                        y = HighWord(lparam)
+                        x = pt.X,
+                        y = pt.Y
                     };
 
                     NDITouchInput.Instance.Remove(touch);
@@ -87,7 +113,7 @@ public class NDITableTouchHook : XComponent {
         return CallWindowProc(unityWndProc, hwnd, msg, wparam, lparam);
     }
 
-    void OnDisable() {
+    protected override void OnDisable() {
         SetWindowLongPtr(wndHandle, GWL_WNDPROC, (long)unityWndProc);
 
         wndHandle = IntPtr.Zero;
