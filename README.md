@@ -42,7 +42,7 @@
 
 ### 基本概念
 
-![img](document/images/1-6.png)
+![img](Document/images/1-6.png)
 
 
 >**展示屏工程**：负责展示三维环境内容，提供供下屏调用的接口（FreeCall)。
