@@ -33,14 +33,6 @@
       - [FreeCall](#freecall)
       - [调用FreeCall](#调用freecall)
 
-<!-- /code_chunk_output -->
-<style>
-    img[src$="centerme"] {
-    display:block;
-    margin: 0 auto;
-    }
-</style>
-
 ## 简介
 
 维度感知桌面开发工具包（NDITable SDK）用于开发**维度感知桌面**内容应用。应用的开发形式支持两种：
@@ -50,7 +42,7 @@
 
 ### 基本概念
 
-<img src="document/images/1-6.png?style=centerme" />
+![img](document/images/1-6.png)
 
 
 >**展示屏工程**：负责展示三维环境内容，提供供下屏调用的接口（FreeCall)。
@@ -64,7 +56,7 @@
 
 此SDK需要使用**Unity3D 2018.4或更高版本**进行开发。由于用到了UnityPackageManager以及`.Net 4.x`相关Api，所以在使用本SDK时需要使用**Unity2018.4**或更高版本，并且**PlayerSettings/Other Settings**中的API兼容（Api Compatibility Level）要调整至`.Net 4.x`，如图：
 
-<img src="document/images/1-5.png?style=centerme" />
+![img](document/images/1-5.png)
 
 ---
 
@@ -87,11 +79,11 @@
 
  > "com.ndengine.nditable": "https://github.com/NDEngine/NDITable.git#sdk-0.2.4-rc1",
 
-<img src="document/images/1-1.png?style=centerme" />
+![img](document/images/1-1.png)
 
 导入成功后，在Unity的`Window/NDITable`下点击导入开发资源，如果需要查看相关试例可以点击导入开发试例。
 
-<img src="document/images/1-2.png?style=centerme" />
+![img](document/images/1-2.png)
 
 > **注意**：点击导入开发试例时会同时导入开发资源
 
@@ -115,13 +107,13 @@
 
 在**NDITableAssets/Prefabs**中将[NDITableClient](#nditableclient)拖拽到场景中，并将Unity创建UI时自动生成的EventSystem替换为[NDITableEventSystem](#nditableeventsystem)，如图：
 
-<img src="document/images/2-3.png?style=centerme" />
+![img](document/images/2-3.png)
 
 #### 添加Marker { ignore = true }
 
 把`NDITableAssets/prefabs/Markers/NormalMarker`拖入场景，如图：
 
-<img src="document/images/2-4.png?style=centerme" />
+![img](document/images/2-4.png)
 
 #### 添加监听Marker自身的事件 { ignore = true }
 
@@ -155,23 +147,23 @@ public class MarkerEvents : MarkerController
 
 将自定义脚本添加至Marker事件，如图：
 
-<img src="document/images/2-5.png?style=centerme" height = 345/>
+![img](document/images/2-5.png)
 
 **运行并测试：**
 
 运行后按下F1通过鼠标模拟Marker进行测试（方向键左右调整MarkerID，鼠标左键放下，右键拿起，滚轮旋转）：
 
-<img src="document/images/2-6.png?style=centerme" />
+![img](document/images/2-6.png)
 
 #### 添加监听Marker进出UI的事件 { ignore = true }
 
 在Canvas中添加一个UI，当Marker进出它时响应事件。
 
-<img src="document/images/2-7.png?style=centerme" />
+![img](document/images/2-7.png)
 
 在UI上添加NDITableEventTrigger：
 
-<img src="document/images/2-8.png?style=centerme" height = 265/>
+![img](document/images/2-8.png)
 
 创建脚本，具体内容如下：
 ```csharp
@@ -200,15 +192,13 @@ public class ImageOneEventTrigger : MonoBehaviour {
 ```
 
 把写好的脚本挂在UI上，在`NDITableEventTrigger`中添加相关事件。
-<img src="document/images/2-9.png?style=centerme" />
+![img](document/images/2-9.png)
 
 **运行并测试：**
 
 运行后按下F1通过鼠标模拟Marker进行测试。
-<center>
-<img src="document/images/2-10.png" />
-<img src="document/images/2-11.png" />
-</center>
+![img](document/images/2-10.png)
+![img](document/images/2-11.png)
 
 ---
 
@@ -226,13 +216,13 @@ public class ImageOneEventTrigger : MonoBehaviour {
 
 在**NDITableAssets/Prefabs**中将[NDITableClient](#nditableclient)拖拽到场景中，并将Unity创建UI时自动生成的EventSystem替换为[NDITableEventSystem](#nditableeventsystem)，如图：
 
-<img src="document/images/2-3.png?style=centerme" />
+![img](document/images/2-3.png)
 
 #### 添加Marker { ignore = true }
 
 把`NDITableAssets/prefabs/Markers/NormalMarker`拖入场景，如图：
 
-<img src="document/images/2-4.png?style=centerme" />
+![img](document/images/2-4.png)
 
 #### 创建展示屏窗口和交互屏窗口 { ignore = true }
 
@@ -240,16 +230,16 @@ public class ImageOneEventTrigger : MonoBehaviour {
 
 在场景中新建一个相机用于拍摄Canvas窗口，并将该相机的`Target Display`设置为Display1作为**交互屏窗口**，如图：
 
-<img src="document/images/4-2.png?style=centerme" />
+![img](document/images/4-2.png)
 
 > **注意**：Marker的显示相机（DisplayCamera）要选为此UI相机：
-> <img src="document/images/4-5.png?style=centerme" />
+> ![img](document/images/4-5.png)
 
 ##### 设置3D场景相机为展示屏窗口 { ignore = true }
 
 把用来显示3D场景的原Camera的`Target Display`设置为Display2作为**展示屏窗口**，如图：
 
-<img src="document/images/4-4.png?style=centerme" width = 332 height = 505/>
+![img](document/images/4-4.png)
 
 ##### 添加同时显示两个窗口的脚本 { ignore = true }
 
@@ -276,8 +266,8 @@ public class ShowDisplay : MonoBehaviour
 
 **在`Hierarchy`面板右键菜单中的`2D Object/NDITable`和`3D Object/NDITable`中创建2D和3D锚点，拖动每个锚点中的三个点到对应的相同位置**
 
-<img src="document/images/4-7.png?style=centerme"/>
-<img src="document/images/4-6.png?style=centerme"/>
+![img](document/images/4-7.png)
+![img](document/images/4-6.png)
 
 #### 注册校正方案 { ignore = true }
 
@@ -300,9 +290,8 @@ public class ShowDisplay : MonoBehaviour
 
 运行后在交互屏窗口按下F1通过鼠标模拟Marker进行测试，移动Marker到不同颜色的UI上，如果展示屏方块也在相同颜色的地板上则证明测试成功。
 
-<img src="document/images/4-8.png?style=centerme"/>
-<img src="document/images/4-9.png?style=centerme"/>
-
+![img](document/images/4-8.png)
+![img](document/images/4-9.png)
 ---
 
 ### 通信模块的使用
@@ -319,7 +308,7 @@ public class ShowDisplay : MonoBehaviour
 
 在**NDITableAssets/Prefabs**中将[NDITableClient](#nditableclient)、[SkyfallClient](#skyfallclient)、[SkyfallServer](#skyfallclient)拖拽到场景中，并将Unity创建UI时自动生成的EventSystem替换为[NDITableEventSystem](#nditableeventsystem)，如图：
 
-<img src="document/images/5-5.png?style=centerme" />
+![img](document/images/5-5.png)
 
 > **注意**：FreeCall通常使用在双工程项目中，它的作用是让两个工程可以通过通信进行交互，这里在同一个工程中向自己进行通信只是为了展示如何使用FreeCall进行通信。如果您的项目是基于**TUIO协议**开发的，则不用替换[NDITableEventSystem](#nditableeventsystem)，只导入[NDITableClient](#nditableclient)即可。
 
@@ -327,24 +316,24 @@ public class ShowDisplay : MonoBehaviour
 
 我们在场景中放一个红色的正方体，然后在UI上放一个按钮，通过点击按钮发送Request改变正方体的颜色。
 
-<img src="document/images/5-6.png?style=centerme"/>
+![img](document/images/5-6.png)
 
 #### 创建FreeCall { ignore = true }
 
 创建改变正方体颜色的接口供交互屏调用（FreeCall的详细生成请查看[FreeCall](#freecall)）。创建完成后将FreeCall挂在场景中：
 
-<img src="document/images/5-7.png?style=centerme" />
+![img](document/images/5-7.png)
 
 #### 在按钮事件中进行调用 { ignore = true }
 
 在按钮的点击事件中发送Request调用FreeCall方法改变正方体的颜色：
 
-<img src="document/images/5-8.png?style=centerme" />
+![img](document/images/5-8.png)
 
 #### 运行并测试 { ignore = true }
 运行工程并点击按钮，如果正方体变为绿色则说明测试成功。
 
-<img src="document/images/5-9.png?style=centerme"  height = 326/>
+![img](document/images/5-9.png)
 
 ---
 
@@ -375,7 +364,7 @@ https://github.com/NDEngine/NDITable-City.git
 
 在**NDITableAssets/Prefabs**中将[NDITableClient](#nditableclient)拖拽到场景中，并将Unity创建UI时自动生成的EventSystem替换为[NDITableEventSystem](#nditableeventsystem)，如图：
 
-<img src="document/images/4-1.png?style=centerme" />
+![img](document/images/4-1.png)
 
 ##### 创建展示屏窗口和交互屏窗口 { ignore = true }
 
@@ -383,13 +372,13 @@ https://github.com/NDEngine/NDITable-City.git
 
 在场景中新建一个相机用于拍摄Canvas窗口，并将该相机的`Target Display`设置为Display1作为**交互屏窗口**，如图：
 
-<img src="document/images/4-2.png?style=centerme" />
+![img](document/images/4-2.png)
 
 ##### 设置3D场景相机为展示屏窗口 { ignore = true }
 
 把用来显示3D场景的原Camera的`Target Display`设置为Display2作为**展示屏窗口**，如图：
 
-<img src="document/images/4-4.png?style=centerme" width = 332 height = 505/>
+![img](document/images/4-4.png)
 
 ##### 添加同时显示两个窗口的脚本 { ignore = true }
 
@@ -419,9 +408,9 @@ public class ShowDisplay : MonoBehaviour
 
 在`Tools/xFrame/NDITable`中创建2D和3D锚点，拖动每个锚点中的三个点到对应的相同位置
 
-<img src="document/images/5-1.png?style=centerme" />
-<img src="document/images/5-2.png?style=centerme" width = 584 height = 314/>
-<img src="document/images/5-3.png?style=centerme" width = 584 height = 314/>
+![img](document/images/5-1.png)
+![img](document/images/5-2.png)
+![img](document/images/5-3.png)
 
 **注册校正方案**
 
@@ -464,7 +453,7 @@ public class AnchorRegister : MonoBehaviour
 
 将SDK中的FirstPersonMarker拖入场景（[Markers](#markers)）
 
-<img src="document/images/2-2.png?style=centerme" width = 350 />
+![img](document/images/2-2.png)
 
 **新建CameraController**
 
@@ -520,18 +509,18 @@ public class CameraController : MarkerController {
 
 将CameraController挂在对应Marker上并在Marker中添加对应事件。
 
-<img src="document/images/6-6.png?style=centerme" height = 580/>
+![img](document/images/6-6.png)
 
 #### 运行 { ignore = true }
 
 添加一个Game窗口并设置为Display2。
 
-<img src="document/images/6-8.png?style=centerme" />
+![img](document/images/6-8.png)
 
 运行项目后按下F1启动鼠标模拟Marker操作（方向键左右调整MarkerID，鼠标左键放下，右键拿起，滚轮旋转），如果可以通过模拟Marker操控展示屏相机移动旋转则说明运行成功。
 
-<img src="document/images/6-9.png?style=centerme" />
-<img src="document/images/6-10.png?style=centerme" />
+![img](document/images/6-9.png)
+![img](document/images/6-10.png)
 
 ---
 
@@ -555,13 +544,13 @@ public class CameraController : MarkerController {
 
 将**NDITableAssets/Prefabs/**[SkyfallServer](#skyfallserver)拖拽到场景中，如图：
 
-<img src="document/images/1-4.png?style=centerme" />
+![img](document/images/1-4.png)
 
 ##### 在漫游相机上添加NDITableGO { ignore = true }
 
 **目的**：方便获取场景内的物体（详情请查看：[NDITableGO](#nditablego)）
 
-<img src="document/images/6-1.png?style=centerme" />
+![img](document/images/6-1.png)
 
 ##### 添加校正方案 { ignore = true }
 
@@ -569,7 +558,7 @@ public class CameraController : MarkerController {
 
 创建3D锚点并找三个位置（[校正方案](#校正方案)）
 
-<img src="document/images/6-4.png?style=centerme" height = 425 />
+![img](document/images/6-4.png)
 
 ##### 创建FreeCall脚本并添加到场景 { ignore = true }
 
@@ -605,7 +594,7 @@ public class FreeCall : MonoBehaviour {
 ```
 **将FreeCall添加到场景中**
 
-<img src="document/images/6-2.png?style=centerme" />
+![img](document/images/6-2.png)
 
 ---
 
@@ -623,7 +612,7 @@ public class FreeCall : MonoBehaviour {
 
 在**NDITableAssets/Prefabs**中将[NDITableClient](#nditableclient)、[SkyfallClient](#skyfallclient)拖拽到场景中，并将Unity创建UI时自动生成的EventSystem替换为[NDITableEventSystem](#nditableeventsystem)，如图：
 
-<img src="document/images/2-1.png?style=centerme" />
+![img](document/images/2-1.png)
 
 ##### 添加校正方案 { ignore = true }
 
@@ -631,7 +620,7 @@ public class FreeCall : MonoBehaviour {
 
 创建2D锚点并找到与展示屏对应的三个位置（[校正方案](#校正方案)）
 
-<img src="document/images/6-5.png?style=centerme" />
+![img](document/images/6-5.png)
 
 ##### 添加漫游Marker { ignore = true }
 
@@ -742,20 +731,20 @@ public class CameraController : MarkerController {
 
 将CameraController挂在对应Marker上并在Marker中添加对应事件。
 
-<img src="document/images/3-4.png?style=centerme" />
+![img](document/images/3-4.png)
 
 ##### 运行 { ignore = true }
 
 同时运行两个工程后，在交互屏工程中按下F1启动鼠标模拟Marker操作（方向键左右调整MarkerID，鼠标左键放下，右键拿起，滚轮旋转），如果可以通过模拟Marker操控展示屏相机移动旋转则说明运行成功。
 
-<img src="document/images/6-11.png?style=centerme" />
-<img src="document/images/6-12.png?style=centerme" />
+![img](document/images/6-11.png)
+![img](document/images/6-12.png)
 
 #### 打包
 
 在确定配置正确的情况下，将工程打出PC包。
 
-<img src="document/images/6-3.png?style=centerme" />
+![img](document/images/6-3.png)
 
 >**注意**：打包格式必须是**x86_64**的格式
 
@@ -775,11 +764,11 @@ public class CameraController : MarkerController {
 
 将FirstPersonMarker拖拽到场景中，如图：
 
-<img src="document/images/3-1.png?style=centerme" />
+![img](document/images/3-1.png)
 
 因为Marker是预设模型所以需要把Canvas的RenderMode调整为`Screen Space - Camera`，如图：
 
-<img src="document/images/3-2.png?style=centerme" />
+![img](document/images/3-2.png)
 
 #### 挂在Marker上的脚本介绍 {ignore = true}
 
@@ -833,7 +822,7 @@ MarkerEventData:
 
 将刚编写的脚本挂在对应的Marker上，并在`Marker.cs`里添加对应事件，如图：
 
-<img src="document/images/3-4.png?style=centerme" />
+![img](document/images/3-4.png)
 
 #### 添加Marker与UI交互的事件 { ignore = true }
 
@@ -866,18 +855,18 @@ MarkerEventData:
 
 点击`Tools/xFrame/NDITable`分别在3D场景和2D平面图中创建3D和2D锚点，如图：
 
-<img src="document/images/5-1.png?style=centerme" />
+![img](document/images/5-1.png)
 
 >**注意**：2D锚点要放在对应的Canvas中,并把AnchorGroup的位置归零、大小归一。
-><img src="document/images/5-4.png?style=centerme" />
+>![img](document/images/5-4.png)
 
 
 ##### 设置锚点位置 {ignore = true }
 
 拖拽锚点中的Index使2D和3D锚点中相同Index的位置对应，如图：
 
-<img src="document/images/5-2.png?style=centerme" />
-<img src="document/images/5-3.png?style=centerme" />
+![img](document/images/5-2.png)
+![img](document/images/5-3.png)
 
 #### 生成校正方案 {ignore = true }
 
@@ -976,7 +965,7 @@ Vector3 targetPos = CoordMappingSchemeManager.Instance.Mapping(Vector3 source);
 
 在需要获取的物体上添加脚本`NDITableGO`，如图：
 
-<img src="document/images/6-1.png?style=centerme" />
+![img](document/images/6-1.png)
 
 NDITableGO.cs:
 
